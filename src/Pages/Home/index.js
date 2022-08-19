@@ -1,8 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+import Header from '../../Components/Header';
+
 export default function Home() {
     return (
         <View style={styles.container}>
+            <Header />
             <Text>Pagina Home</Text>
         </View>
     );
