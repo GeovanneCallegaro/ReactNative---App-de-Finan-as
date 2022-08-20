@@ -1,28 +1,29 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 import Header from '../../Components/Header';
 import Balance from '../../Components/Balance';
+import Movements from '../../Components/Movements';
 
 const list = [
     {
         id: 1, 
         label: 'Boleto - Conta de Luz',
         value: '200,00',
-        date: '17/09/2022',
+        date: '10/09/2022',
         type: 0 // despesas
     },
     {
         id: 2, 
         label: 'Pix - Cliente X',
         value: '2.500,00',
-        date: '17/09/2022',
+        date: '20/09/2022',
         type: 1 // receita / entradas
     },
     {
         id: 3, 
         label: 'Salário',
         value: '7.000,00',
-        date: '17/09/2022',
+        date: '22/09/2022',
         type: 1 // receita / entradas
     },
 ]
@@ -34,6 +35,14 @@ export default function Home() {
             <Balance balance='9.250,80' expenses='-900,00'/>
 
             <Text style={styles.title}> Últimas Movimentações </Text>
+
+            <FlatList 
+                style={styles.list}
+                data={list}
+                keyExtractor={(item) => String(item.id)}
+                showsVerticalScrollIndicator={false}
+                renderItem={({ item }) => <Movements data={item}/>}
+            />
         </View>
     );
 }
@@ -47,8 +56,11 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18, 
         fontWeight: 'bold',
-        marginLeft: 14, 
-        marginRight: 14,
-        marginTop: 14,
+        margin: 14,
+    }, 
+
+    list: {
+        marginStart: 14,
+        marginEnd: 14
     }
 });
