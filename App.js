@@ -1,3 +1,4 @@
+import 'react-native-reanimated';
 import Home from './src/Pages/Home';
 
 export default function App() {
