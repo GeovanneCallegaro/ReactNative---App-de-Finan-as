@@ -1,4 +1,5 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Alert, FlatList, StyleSheet, Text, View } from 'react-native';
 
 import Actions from '../../Components/Actions';
 import Balance from '../../Components/Balance';
@@ -30,12 +31,21 @@ const list = [
 ]
 
 export default function Home() {
+    const [valueEntry, setValueEntry] = useState(0);
+    const [balance, setBalance] = useState(1000)
+
+    function onChangeBalance(value) {
+        const valueNumber = Number(value);
+        setValueEntry(valueNumber);
+        setBalance(balance + valueEntry);
+    }
+
     return (
         <View style={styles.container}>
             <Header name='Geovanne Callegaro' />
-            <Balance balance='9.250,80' expenses='-900,00' />
+            <Balance balance={balance} expenses='-900,00' />
 
-            <Actions />
+            <Actions onChangeBalance={onChangeBalance} />
 
             <Text style={styles.title}> Últimas Movimentações </Text>
 

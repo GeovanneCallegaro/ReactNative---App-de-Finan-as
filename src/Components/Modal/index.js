@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import { Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 
-export default function ModalView({ visibleModal }) {
-    const [number, setValueNumber] = useState(0);
+export default function ModalView({ visibleModal, onChangeModalVisibility, onChangeBalance, value, setValue}) {
 
     return (
         <View style={styles.container}>
@@ -20,17 +19,17 @@ export default function ModalView({ visibleModal }) {
                     <View style={styles.inputContainer}>
                         <TextInput
                             style={styles.input}
-                            onChangeText={setValueNumber}
-                            value={number}
+                            onChangeText={setValue}
+                            value={value}
                             placeholder='R$ 0,00'
                             keyboardType='numeric'
                         />
                     </View>
                     <View style={styles.buttonsContainer}>
-                        <TouchableOpacity style={styles.closeButton}>
+                        <TouchableOpacity style={styles.closeButton} onPress={() => onChangeModalVisibility()}>
                             <AntDesign name='close' size={26} color='#000' />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.successButton}>
+                        <TouchableOpacity style={styles.successButton} onPress={() => onChangeBalance(value)}>
                             <AntDesign name='check' size={26} color='#FFF' />
                         </TouchableOpacity>
                     </View>

@@ -7,14 +7,26 @@ import { AntDesign } from '@expo/vector-icons';
 
 import ModalView from "../Modal";
 
-export default function Actions() {
+export default function Actions({ onChangeBalance }) {
     const [visibleModal, setVisibleModal] = useState(false);
+    const [value, setValue] = useState(0)
+
+    const onChangeModalVisibility = () => {
+        setVisibleModal(!visibleModal);
+        setValue(0);
+    }
 
     return (
         <ScrollView style={styles.container} horizontal={true} showsHorizontalScrollIndicator={false}>
-            <ModalView visibleModal={visibleModal} />
+            <ModalView 
+                visibleModal={visibleModal} 
+                onChangeModalVisibility={onChangeModalVisibility}
+                onChangeBalance={onChangeBalance}
+                value={value}
+                setValue={setValue}
+            />
 
-            <TouchableOpacity style={styles.actionButton} onPress={() => setVisibleModal(!visibleModal)}>
+            <TouchableOpacity style={styles.actionButton} onPress={() => onChangeModalVisibility()}>
                 <View style={styles.areaButton}>
                     <AntDesign name='addfolder' size={26} color='#000' />
                 </View>
