@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    ScrollView
+    ScrollView, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native';
 
-import { AntDesign } from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons';
+
+import ModalView from "../Modal";
 
 export default function Actions() {
+    const [visibleModal, setVisibleModal] = useState(false);
+
     return (
         <ScrollView style={styles.container} horizontal={true} showsHorizontalScrollIndicator={false}>
-            <TouchableOpacity style={styles.actionButton}>
+            <ModalView visibleModal={visibleModal} />
+
+            <TouchableOpacity style={styles.actionButton} onPress={() => setVisibleModal(!visibleModal)}>
                 <View style={styles.areaButton}>
                     <AntDesign name='addfolder' size={26} color='#000' />
                 </View>
@@ -52,8 +54,8 @@ export default function Actions() {
 
 const styles = StyleSheet.create({
     container: {
-        maxHeight: 84, 
-        marginBottom: 14, 
+        maxHeight: 84,
+        marginBottom: 14,
         marginTop: 18,
         paddingEnd: 14,
         paddingStart: 14
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     actionButton: {
         alignItems: 'center',
         marginRight: 32
-    }, 
+    },
 
     areaButton: {
         backgroundColor: '#ecf0f1',
